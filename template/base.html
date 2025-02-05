@@ -21,8 +21,14 @@
             <a class="blog-header-logo text-dark" href="/">ChaiChronicles</a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-warning" href="#">Login</a> &nbsp;
-            <a class="btn btn-sm btn-outline-secondary" href="#">SignUp</a>
+            {% if not user.is_authenticated %}
+            <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">SignUp</a>
+            {% else %}
+            <span>You are logged In as {{ user }}</span>
+            &emsp;
+            <span><a class="btn btn-sm btn-warning" href="{% url 'logout' %}">Logout</a></span>
+            {% endif %}
           </div>
         </div>
       </header>
